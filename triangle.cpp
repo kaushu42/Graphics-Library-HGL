@@ -1,7 +1,5 @@
-extern "C"
-#include <cmath>
-#include "HGL.h"
-
+#include "triangle.h"
+#include "line.h"
 triangle::triangle(float x1,float y1,float x2,float y2,float x3,float y3, Color color,string str):x1(x1),y1(y1),x2(x2),y2(y2),x3(x3),y3(y3),color(color)
 {
   if (str=="nodraw")

@@ -1,29 +1,25 @@
-extern "C"
-#include <cmath>
-#include "HGL.h"
-
-rectangle::rectangle(float x1,float y1,float x2,float y2,float angle,Color color,string str):x1(x1),y1(y1),x2(x2),y2(y2),color(color),angle(angle)
+#include "rectangle.h"
+#include "line.h"
+rectangle::rectangle(float x1,float y1,float x2,float y2,float angle,Color color,string str):x1(x1),y1(y1),x2(x2),y2(y2),_color(color),angle(angle)
 {
   if (str=="nodraw")
   return;
   draw();
-
 }
 
 void rectangle::draw()
 {
   float xk=(x1+x2)/2;
   float yk=(y1+y2)/2;
-  line(x1,y1,x1,y2,color,"nodraw").rotate(angle,"Draw",xk,yk);
-  line(x1,y1,x2,y1,color,"nodraw").rotate(angle,"Draw",xk,yk);
-  line(x2,y2,x1,y2,color,"nodraw").rotate(angle,"Draw",xk,yk);
-  line(x2,y2,x2,y1,color,"nodraw").rotate(angle,"Draw",xk,yk);
+  line(x1,y1,x1,y2,_color,"nodraw").rotate(angle,"Draw",xk,yk);
+  line(x1,y1,x2,y1,_color,"nodraw").rotate(angle,"Draw",xk,yk);
+  line(x2,y2,x1,y2,_color,"nodraw").rotate(angle,"Draw",xk,yk);
+  line(x2,y2,x2,y1,_color,"nodraw").rotate(angle,"Draw",xk,yk);
 }
 
 rectangle rectangle::translate(float xt,float yt,string str)
 {
-  return rectangle(x1+xt,y1+yt,x2+xt,y2+yt,angle,color,str);
-
+  return rectangle(x1+xt,y1+yt,x2+xt,y2+yt,angle,_color,str);
 }
 
 rectangle rectangle::scale(float xs,float ys,string str,float csx,float csy)
@@ -34,7 +30,7 @@ rectangle rectangle::scale(float xs,float ys,string str,float csx,float csy)
     csy=(y1+y2)/2;
   }
   rectangle r=translate(-csx,-csy,"nodraw");
-  return rectangle(r.x1*xs,r.y1*ys,r.x2*xs,r.y2*ys,angle,color,"nodraw").translate(csx,csy,str);
+  return rectangle(r.x1*xs,r.y1*ys,r.x2*xs,r.y2*ys,angle,_color,"nodraw").translate(csx,csy,str);
 
 }
 
@@ -46,14 +42,18 @@ rectangle rectangle::remove()
 rectangle rectangle::rotate(float angle,string str,float csx,float csy)
 {
 
-  return rectangle(x1,y1,x2,y2,angle,color,str);
+  return rectangle(x1,y1,x2,y2,angle,_color,str);
 
 }
 
 rectangle rectangle::move(float xt,float yt,int time,string str)
 {
-//  remove();
   remove();
   *this=translate(xt,yt,str);
   return *this;
+}
+
+rectangle rectangle::setColor(Color color){
+  remove();
+  _color = color;
 }

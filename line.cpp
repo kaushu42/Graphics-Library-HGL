@@ -1,12 +1,10 @@
-extern "C"
-#include <cmath>
-#include "HGL.h"
+#include "line.h"
 
 line::line(float x1,float y1,float x2,float y2,Color color,string str):x1(x1),y1(y1),x2(x2),y2(y2),color(color)
 {
   if (str=="nodraw")
   return;
-draw();
+  draw();
 }
 
 void line::draw()

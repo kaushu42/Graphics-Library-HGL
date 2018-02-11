@@ -1,10 +1,7 @@
-extern "C"
-#include <cmath>
 #include "HGL.h"
-
+using std::string;
 const int WINDOW_WIDTH = 500;
 const int WINDOW_HEIGHT = 500;
-int fullscreen_flag;
 
 void OPENGL_INIT(int argc,char **argv);
 void OPENGL_end();

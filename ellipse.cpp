@@ -1,6 +1,4 @@
-extern "C"
-#include <cmath>
-#include "HGL.h"
+#include "ellipse.h"
 
 ellipse::ellipse(float xc,float yc,float rx,float ry, Color color,string str):xc(xc),yc(yc),rx(rx),ry(ry),color(color)
 {

@@ -1,3 +1,5 @@
+#ifndef COLOR_H
+#define COLOR_H
 class Color{
 public:
   float r, g, b;
@@ -12,3 +14,4 @@ const Color YELLOW(0, 255, 255);
 const Color BLACK(0,0,0);
 
 const Color NONE= BLACK;
+#endif

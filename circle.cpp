@@ -1,7 +1,4 @@
-extern "C"
-#include <cmath>
-#include "HGL.h"
-
+#include "circle.h"
 circle::circle(float xc,float yc,float r,Color color,string str):xc(xc),yc(yc),r(r),color(color)
 {
   if (str=="nodraw")
